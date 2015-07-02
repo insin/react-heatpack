@@ -1,6 +1,6 @@
 # react-heatpack
 
-**Pre-configured webpack hot-loading command for React apps - just point it at an entry module and go.**
+**Pre-configured webpack hot-loading command for developing React apps - just point it at an entry module and go.**
 
 ## Usage
 
@@ -32,7 +32,7 @@ The workflow this module is intended to enable is:
 
 1. Have an idea for a React component/library/app/etc.
 2. `npm install` whatever you need.
-3. Write some code, inclusing an entry module which runs `React.render(<App/>, document.getElementById('app'))`.
+3. Write some code, including an entry module which runs `React.render(<App/>, document.getElementById('app'))`.
 4. Point `heatpack` at the entry module to serve it up and get back to working on your idea, with new dependencies and modules hot-reloaded as you work.
 
 ## Root node
