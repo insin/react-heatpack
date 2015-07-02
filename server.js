@@ -3,6 +3,7 @@ var WebpackDevServer = require('webpack-dev-server')
 
 module.exports = function server(config) {
   new WebpackDevServer(webpack(config), {
+    contentBase: __dirname + '/build',
     publicPath: config.output.publicPath,
     hot: true,
     historyApiFallback: true

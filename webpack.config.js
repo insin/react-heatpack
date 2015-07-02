@@ -1,9 +1,11 @@
 'use strict'
 
+var path = require('path')
 var webpack = require('webpack')
 
+var heatpackModules = path.join(__dirname, 'node_modules')
+
 module.exports = {
-  context: process.cwd(),
   devtool: 'eval',
   entry: [
     'webpack-dev-server/client?http://localhost:3000',
@@ -23,7 +25,13 @@ module.exports = {
     })
   ],
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.jsx'],
+    // Fall back to find heatpack's dependencies for wepack entry modules above
+    fallback: heatpackModules
+  },
+  resolveLoader: {
+    // Resolve loaders from heatpack's dependencies
+    modulesDirectories: [heatpackModules],
   },
   module: {
     loaders: [

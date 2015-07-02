@@ -1,6 +1,6 @@
 {
   "name": "react-heatpack",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Instant hot-loading for React apps",
   "repository": {
     "type": "git",
