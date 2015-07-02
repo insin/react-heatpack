@@ -1,6 +1,25 @@
 # react-heatpack
 
-**Pre-configured webpack hot-loading command for developing React apps - just point it at an entry module and go.**
+A `heatpack` command for quick React development, with hot reloading.
+
+Just point it at a JavaScript module which runs `React.render(...)` and go:
+
+```
+heatpack src/index.js
+```
+
+## Workflow
+
+The workflow this module is intended to enable is:
+
+1. Have an idea for a React component/library/app/etc.
+2. `npm install` whatever you need.
+3. Write some initial code, including an entry module which runs `React.render(<App/>, document.getElementById('app'))`.
+4. Point `heatpack` at the entry module to serve it up and get back to working on your idea, with code and styles hot reloading as you work.
+
+I noticed that while my production webpack config is tailored to each project, the webpack config for hot reloading during development is fairly uniform.
+
+This module provides a generic hot reloading config and takes care of hooking up its webpack depedencies, so you can focus on the interesting bit during initial development.
 
 ## Usage
 
@@ -26,15 +45,6 @@ webpack: bundle is now VALID
 
 Open http://localhost:3000/ and your app should be served and will be hot-loaded when you make any changes.
 
-## Workflow
-
-The workflow this module is intended to enable is:
-
-1. Have an idea for a React component/library/app/etc.
-2. `npm install` whatever you need.
-3. Write some code, including an entry module which runs `React.render(<App/>, document.getElementById('app'))`.
-4. Point `heatpack` at the entry module to serve it up and get back to working on your idea, with new dependencies and modules hot-reloaded as you work.
-
 ## Root node
 
 Since [you should never render to `document.body`](https://medium.com/@dan_abramov/two-weird-tricks-that-fix-react-7cf9bbdef375#486f), the index page served up provides a `<div id="app"></div>` for you to render into:
@@ -55,7 +65,7 @@ You can also require `.json` files as normal.
 
 [react-hot-loader](https://github.com/gaearon/react-hot-loader) is used to allow you to tweak your React components on the fly without losing their current state.
 
-In order to take advantage of this, components need to be exported from a module. To ensure you can hot load *every* component, put initialisation code in a separate module which imports your top-level components, e.g.:
+In order to take advantage of this, components need to be exported from a module. To ensure you can hot reload *every* component, put initialisation code in a separate module which imports your top-level components, e.g.:
 
 ```javascript
 var React = require('react')
@@ -66,7 +76,7 @@ React.render(<App/>, document.getElementById('app'))
 
 ## CSS
 
-Require CSS files from your JavaScript as if it was any other module, e.g.:
+Require CSS files from your JavaScript as if they were any other module, e.g.:
 
 ```javascript
 require('./Widget.css')
@@ -80,7 +90,7 @@ Images and font files referenced from your CSS will also be handled for you.
 
 ## Images
 
-Require image files from your JavaScript as if it was any other module, e.g.:
+Require image files from your JavaScript as if they were any other module, e.g.:
 
 ```html
 <img src={require('./logo.png')}/>
