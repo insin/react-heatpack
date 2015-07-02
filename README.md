@@ -53,6 +53,17 @@ JavaScript modules can have `.js` or `.jsx` extensions and will be transformed w
 
 You can also require `.json` files as normal.
 
+[react-hot-loader](https://github.com/gaearon/react-hot-loader) is used to allow you to tweak your React components on the fly without losing their current state.
+
+In order to take advantage of this, components need to be exported from a module. To ensure you can hot load *every* component, put initialisation code in a separate module which imports your top-level components, e.g.:
+
+```javascript
+var React = require('react')
+var Aoo = require('./App')
+
+React.render(<App/>, document.getElementById('app'))
+```
+
 ## CSS
 
 Require CSS files from your JavaScript as if it was any other module, e.g.:
@@ -76,5 +87,10 @@ Require image files from your JavaScript as if it was any other module, e.g.:
 ```
 
 Small images will be inlined as `data:` URIs and larger images will be served up by webpack.
+
+## Recommended modules
+
+* [react-router](https://github.com/rackt/react-router) - hot reloadable nested routing
+* [redux](https://github.com/gaearon/redux) - hot reloadable Flux
 
 ## MIT Licensed
