@@ -1,0 +1,29 @@
+{
+  "name": "react-heatpack",
+  "version": "1.0.0",
+  "description": "Instant hot-loading for React apps",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/insin/react-heatpack.git"
+  },
+  "bin": {
+    "heatpack": "./bin/heatpack.js"
+  },
+  "dependencies": {
+    "autoprefixer-loader": "^2.0.0",
+    "babel-core": "^5.6.15",
+    "babel-loader": "^5.2.2",
+    "css-loader": "^0.15.1",
+    "file-loader": "^0.8.4",
+    "json-loader": "^0.5.2",
+    "minimist": "^1.1.1",
+    "node-libs-browser": "^0.5.2",
+    "react": "^0.13.3",
+    "react-hot-loader": "^1.2.7",
+    "style-loader": "^0.12.3",
+    "url-loader": "^0.5.6",
+    "webpack": "^1.10.0",
+    "webpack-dev-server": "^1.10.1"
+  },
+  "license": "MIT"
+}
