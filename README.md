@@ -14,12 +14,14 @@ The workflow this module is intended to enable is:
 
 1. Have an idea for a React component/library/app/etc.
 2. `npm install` whatever you need.
-3. Write some initial code, including an entry module which runs `React.render(<App/>, document.getElementById('app'))`.
+3. Write some initial code, including an entry module which runs `React.render(...)`.
 4. Point `heatpack` at the entry module to serve it up and get back to working on your idea, with code and styles hot reloading as you work.
 
 I noticed that while my production webpack config is tailored to each project, the webpack config for hot reloading during development is fairly uniform.
 
 This module provides a generic hot reloading config and takes care of hooking up its webpack depedencies, so you can focus on the interesting bit during initial development.
+
+If you need a fully-fledged dev/test/prod webpack setup or a reference for how to build one, [cesarandreu/web-app](cesarandreu/web-app) is highly recommended.
 
 ## Usage
 
@@ -33,7 +35,7 @@ Navigate to the React app you want to run and point `heatpack` at its entry modu
 
 ```
 $ cd ~/repos/ideas-md
-$ heatpack src/app.js
+$ heatpack src/index.js
 react-heatpack listening at localhost:3000
 ```
 
@@ -82,7 +84,7 @@ Require CSS files from your JavaScript as if they were any other module, e.g.:
 require('./Widget.css')
 ```
 
-Styles will be automatially applied to the page and hot-reloaded when you make a change.
+Styles will be automatially applied to the page and hot reloaded when you make a change.
 
 Vendor prefixes will be automatically applied to your CSS, as necessary.
 
