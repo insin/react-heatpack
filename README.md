@@ -76,6 +76,12 @@ var Aoo = require('./App')
 React.render(<App/>, document.getElementById('app'))
 ```
 
+## CoffeeScript
+
+CoffeeScript modules can have `.coffee` or `.cjsx` extensions.
+
+`.cjsx` files will be transformed with [coffee-react-transform](https://github.com/jsdf/coffee-react-transform), allowing you to use JSX in your CoffeeScript.
+
 ## CSS
 
 Require CSS files from your JavaScript as if they were any other module, e.g.:
@@ -84,7 +90,7 @@ Require CSS files from your JavaScript as if they were any other module, e.g.:
 require('./Widget.css')
 ```
 
-Styles will be automatially applied to the page and hot reloaded when you make a change.
+Styles will be automatically applied to the page and hot reloaded when you make a change.
 
 Vendor prefixes will be automatically applied to your CSS, as necessary.
 
