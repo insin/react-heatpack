@@ -65,13 +65,15 @@ JavaScript modules can have `.js` or `.jsx` extensions and will be transformed w
 
 You can also require `.json` files as normal.
 
-[react-hot-loader](https://github.com/gaearon/react-hot-loader) is used to allow you to tweak your React components on the fly without losing their current state.
+### Hot reloading React components
 
-In order to take advantage of this, components need to be exported from a module. To ensure you can hot reload *every* component, put initialisation code in a separate module which imports your top-level components, e.g.:
+[React Hot Loader](https://github.com/gaearon/react-hot-loader) is used to allow you to tweak your React components on the fly without losing their current state.
+
+**Note:** [React components need to be exported from a module](https://github.com/gaearon/react-hot-loader/blob/master/docs/Troubleshooting.md#the-following-modules-couldnt-be-hot-updated-they-would-need-a-full-reload) to be eligible for hot reloading, so always put your `React.render(...)` call in separate module (`index.js` is commonly used) which imports the React components to be rendered, e.g.:
 
 ```javascript
 var React = require('react')
-var Aoo = require('./App')
+var App = require('./App')
 
 React.render(<App/>, document.getElementById('app'))
 ```
