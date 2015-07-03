@@ -1,7 +1,7 @@
 {
   "name": "react-heatpack",
-  "version": "1.1.0",
-  "description": "A 'heatpack' command for quick React development, with hot reloading",
+  "version": "1.2.0",
+  "description": "A 'heatpack' command for quick React development with webpack hot reloading",
   "repository": {
     "type": "git",
     "url": "https://github.com/insin/react-heatpack.git"
@@ -24,6 +24,7 @@
     "react": "^0.13.3",
     "react-hot-loader": "^1.2.7",
     "style-loader": "^0.12.3",
+    "tmp": "0.0.26",
     "url-loader": "^0.5.6",
     "webpack": "^1.10.0",
     "webpack-dev-server": "^1.10.1"
