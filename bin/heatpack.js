@@ -3,7 +3,6 @@
 var fs = require('fs')
 var path = require('path')
 var parseArgs  = require('minimist')
-var tmp = require('tmp')
 
 var pkg = require('../package.json')
 var config = require('../webpack.config')
@@ -36,14 +35,10 @@ if (!args.force) {
   var code = fs.readFileSync(entryPath).toString()
   if (code.indexOf('React.render') === -1) {
     console.log("Couldn't find React.render in " + entryPath + " - assuming it exports a React component.")
-    var tempFile = tmp.fileSync({prefix: 'heatpack-', postfix: '.js'})
-    var componentPath = entryPath.replace(/\\/g, '\\\\')
-    fs.writeSync(tempFile.fd, [
-      "var React = require('react')",
-      "var Component = require('" + componentPath + "')",
-      "React.render(<Component/>, document.querySelector('#app'))"
-    ].join('\n'))
-    entryPath = tempFile.name
+    config.resolve.alias = {
+      'theydoitonpurposelynn': entryPath
+    }
+    entryPath = path.join(__dirname, '../dummy.js')
   }
 }
 
