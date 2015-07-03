@@ -1,4 +1,4 @@
-## v1.1.0 - 2015-07-02 11:50
+## v1.1.0 - 2015-07-03 11:50
 
 **Added:** CoffeeScript & CJSX support [[KyleAMathews](https://github.com/KyleAMathews)]
 
