@@ -32,12 +32,6 @@ webpack: bundle is now VALID
 
 Open http://localhost:3000/ and your app should be served and will be hot reloaded when you make any changes.
 
-## Rationale
-
-I noticed that while my production webpack config tended to be tailored to each project's needs, the config for hot reloading during development was fairly uniform and could be used across multiple projects.
-
-This module provides a generic hot reloading config and takes care of hooking up its webpack dependencies, so you can focus on the interesting bit during initial development.
-
 ## Configured loaders
 
 Webpack loaders are configured for the following:
@@ -51,24 +45,6 @@ JavaScript modules can have `.js` or `.jsx` extensions and will be transformed w
 * [ECMAScript 7 proposals](http://babeljs.io/docs/usage/experimental/) experimentally supported by Babel.
 
 You can also require `.json` files as normal.
-
-#### Root element
-
-Since [you should never render to `document.body`](https://medium.com/@dan_abramov/two-weird-tricks-that-fix-react-7cf9bbdef375#486f), the page served up by heatpack includes a `<div id="app"></div>` element for your app to render into.
-
-#### Hot reloading React components
-
-[React Hot Loader](https://github.com/gaearon/react-hot-loader) is used to allow you to tweak your React components on the fly without losing their current state.
-
-**Note:** [React components need to be exported from a module](https://github.com/gaearon/react-hot-loader/blob/master/docs/Troubleshooting.md#the-following-modules-couldnt-be-hot-updated-they-would-need-a-full-reload) to be eligible for hot reloading, so `React.render(...)` should be executed in a different module which imports the components to be rendered, e.g.:
-
-```javascript
-var React = require('react')
-var App = require('./App')
-React.render(<App/>, document.querySelector('#app'))
-```
-
-If you pass `heatpack` a module which _doesn't_ contain a reference to `React.render`, _it will assume the module exports a React component_ and try to take care of rendering it for you. To disable this check and force the specified module to be executed directly, pass an `-f` or `--force` flag.
 
 ### CoffeeScript
 
@@ -102,23 +78,43 @@ Require image files from your JavaScript as if they were any other module, e.g.:
 
 Small images will be inlined as `data:` URIs and larger images will be served up by webpack.
 
-----
+## Gotcha avoidance
 
-## Workflow
+### Root element
 
-The workflow this module is intended to enable is:
+Since [you should never render to `document.body`](https://medium.com/@dan_abramov/two-weird-tricks-that-fix-react-7cf9bbdef375#486f), the page served up by heatpack includes a `<div id="app"></div>` element for your app to render into.
 
-1. Have an idea for a React component/library/app/etc.
-2. `npm install` whatever you need.
-3. Write some initial code: a React component or a module which runs `React.render(...)`.
-4. Run `heatpack` to serve it up and get back to working on your idea, with code and styles hot reloading as you work.
+### Hot reloading React components
+
+[React Hot Loader](https://github.com/gaearon/react-hot-loader) is used to allow you to tweak your React components on the fly without losing their current state.
+
+However, [React components need to be exported from a module](https://github.com/gaearon/react-hot-loader/blob/master/docs/Troubleshooting.md#the-following-modules-couldnt-be-hot-updated-they-would-need-a-full-reload) to be eligible for hot reloading, so `React.render(...)` should be executed in a different module which imports the components to be rendered, e.g.:
+
+```javascript
+var React = require('react')
+var App = require('./App')
+React.render(<App/>, document.querySelector('#app'))
+```
+
+If you pass `heatpack` a module which _doesn't_ contain a reference to `React.render`, _it will assume the module exports a React component_ and try to take care of rendering it for you. To disable this check and force the specified module to be executed directly, pass an `-f` or `--force` flag.
 
 ## Recommended modules
 
 * [react-router](https://github.com/rackt/react-router) - hot reloadable nested routing
+
 * [redux](https://github.com/gaearon/redux) - hot reloadable Flux (which will secretly make you understand at least one piece of [Elm](http://elm-lang.org/)!)
 
-If you need a fully-fledged dev/test/prod webpack setup, or a well-commented reference for how to build one, try [cesarandreu/web-app](https://github.com/cesarandreu/web-app).
+## Beyond heatpack
+
+Heatpack is intended for quick development and experimentation without the inertia of having to create config files and configure development dependencies up-front. The webpack configuration it uses is only suitable for generic hot reloading, which is why there's no option to use it to ouput built files.
+
+At some stage you'll need to set up your own webpack config. These resources should be useful when you reach that point:
+
+* [petehunt/webpack-howto](https://github.com/petehunt/webpack-howto) is a great place to start for the most common "How do I configure X?" questions about webpack.
+
+* [cesarandreu/web-app](https://github.com/cesarandreu/web-app) describes itself as a "reasonable starting point for building a web app" - as such, it probably doesn't have everything you'll end up needing, but it's a working out-of-the-box example of building for dev, test and production, with meticulously-commented webpack config which links out relevant documentation and other resources.
+
+* [SurviveJS - Webpack and React](http://survivejs.com/) - while this entire book is a useful reference for working with React and webpack, the [Deploying Applications](http://survivejs.com/webpack_react/deploying_applications/) chapter is of particular interest for putting together a production build.
 
 ## MIT Licensed
 
