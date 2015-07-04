@@ -118,7 +118,7 @@ The workflow this module is intended to enable is:
 * [react-router](https://github.com/rackt/react-router) - hot reloadable nested routing
 * [redux](https://github.com/gaearon/redux) - hot reloadable Flux (which will secretly make you understand at least one piece of [Elm](http://elm-lang.org/)!)
 
-If you need a fully-fledged dev/test/prod webpack setup, or a well-commented reference for how to build one, try [cesarandreu/web-app](cesarandreu/web-app).
+If you need a fully-fledged dev/test/prod webpack setup, or a well-commented reference for how to build one, try [cesarandreu/web-app](https://github.com/cesarandreu/web-app).
 
 ## MIT Licensed
 
