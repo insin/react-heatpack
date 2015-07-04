@@ -36,7 +36,7 @@ Open http://localhost:3000/ and your app should be served and will be hot reload
 
 I noticed that while my production webpack config tended to be tailored to each project's needs, the config for hot reloading during development was fairly uniform and could be used across multiple projects.
 
-This module provides a generic hot reloading config and takes care of hooking up its webpack depedencies, so you can focus on the interesting bit during initial development.
+This module provides a generic hot reloading config and takes care of hooking up its webpack dependencies, so you can focus on the interesting bit during initial development.
 
 ## Configured loaders
 
