@@ -32,7 +32,17 @@ webpack: bundle is now VALID
 
 Open http://localhost:3000/ and your app should be served and will be hot reloaded when you make any changes.
 
-## JavaScript
+## Rationale
+
+I noticed that while my production webpack config tended to be tailored to each project's needs, the config for hot reloading during development was fairly uniform and could be used across multiple projects.
+
+This module provides a generic hot reloading config and takes care of hooking up its webpack depedencies, so you can focus on the interesting bit during initial development.
+
+## Configured loaders
+
+Webpack loaders are configured for the following:
+
+### JavaScript
 
 JavaScript modules can have `.js` or `.jsx` extensions and will be transformed with [Babel](http://babeljs.io), so you can use:
 
@@ -42,11 +52,11 @@ JavaScript modules can have `.js` or `.jsx` extensions and will be transformed w
 
 You can also require `.json` files as normal.
 
-### Root element
+#### Root element
 
 Since [you should never render to `document.body`](https://medium.com/@dan_abramov/two-weird-tricks-that-fix-react-7cf9bbdef375#486f), the page served up by heatpack includes a `<div id="app"></div>` element for your app to render into.
 
-### Hot reloading React components
+#### Hot reloading React components
 
 [React Hot Loader](https://github.com/gaearon/react-hot-loader) is used to allow you to tweak your React components on the fly without losing their current state.
 
@@ -60,13 +70,13 @@ React.render(<App/>, document.querySelector('#app'))
 
 If you pass `heatpack` a module which _doesn't_ contain a reference to `React.render`, _it will assume the module exports a React component_ and try to take care of rendering it for you. To disable this check and force the specified module to be executed directly, pass an `-f` or `--force` flag.
 
-## CoffeeScript
+### CoffeeScript
 
-CoffeeScript modules can have `.coffee` or `.cjsx` extensions.
+If you use CoffeeScript, it's also supported - modules can have `.coffee` or `.cjsx` extensions.
 
-`.cjsx` files will be transformed with [coffee-react-transform](https://github.com/jsdf/coffee-react-transform), allowing you to use JSX in your CoffeeScript.
+`.cjsx` modules will be transformed with [coffee-react-transform](https://github.com/jsdf/coffee-react-transform), allowing you to use JSX in your CoffeeScript.
 
-## CSS
+### CSS
 
 Require CSS files from your JavaScript as if they were any other module, e.g.:
 
@@ -80,7 +90,9 @@ Vendor prefixes will be automatically applied to your CSS, as necessary.
 
 Images and font files referenced from your CSS will also be handled for you.
 
-## Images
+See the [css-loader documentation](https://github.com/webpack/css-loader/) for more information on what webpack allows you to do when you start using `require()` for CSS.
+
+### Images
 
 Require image files from your JavaScript as if they were any other module, e.g.:
 
@@ -90,11 +102,9 @@ Require image files from your JavaScript as if they were any other module, e.g.:
 
 Small images will be inlined as `data:` URIs and larger images will be served up by webpack.
 
-## Rationale & Workflow
+----
 
-I noticed that while my production webpack config tended to be tailored to each project's needs, the config for hot reloading during development was fairly uniform and could be used across multiple projects.
-
-This module provides a generic hot reloading config and takes care of hooking up its webpack depedencies, so you can focus on the interesting bit during initial development.
+## Workflow
 
 The workflow this module is intended to enable is:
 
@@ -106,7 +116,7 @@ The workflow this module is intended to enable is:
 ## Recommended modules
 
 * [react-router](https://github.com/rackt/react-router) - hot reloadable nested routing
-* [redux](https://github.com/gaearon/redux) - hot reloadable Flux
+* [redux](https://github.com/gaearon/redux) - hot reloadable Flux (which will secretly make you understand at least one piece of [Elm](http://elm-lang.org/)!)
 
 If you need a fully-fledged dev/test/prod webpack setup, or a well-commented reference for how to build one, try [cesarandreu/web-app](cesarandreu/web-app).
 
