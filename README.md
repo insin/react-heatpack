@@ -121,3 +121,10 @@ The workflow this module is intended to enable is:
 If you need a fully-fledged dev/test/prod webpack setup, or a well-commented reference for how to build one, try [cesarandreu/web-app](cesarandreu/web-app).
 
 ## MIT Licensed
+
+Bottom of the README easter egg: you don't even need to `npm install react` to get started with `heatpack` (but don't tell anyone because I don't know if that's actually a good thing yet!). It can serve up this sample module without a `node_modules` in sight:
+
+```js
+var React = require('react')
+module.exports = React.createClass({render() {return <div>Hi!</div>}})
+```
