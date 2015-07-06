@@ -2,12 +2,6 @@
 
 A `heatpack` command for quick [React](https://facebook.github.io/react/) development with [webpack](https://webpack.github.io/) hot reloading.
 
-Just pass it at a module which either runs `React.render(...)` or exports a React component:
-
-```
-heatpack src/index.js
-```
-
 ## Usage
 
 Install the `heatpack` command globally:
@@ -16,10 +10,9 @@ Install the `heatpack` command globally:
 npm install -g react-heatpack
 ```
 
-Navigate to the React code you want to run and point `heatpack` at a module:
+Call `heatpack` with the path to a module which either runs `React.render(...)` or exports a React component:
 
 ```
-$ cd ~/repos/ideas-md
 $ heatpack src/index.js
 react-heatpack listening at localhost:3000
 ```
