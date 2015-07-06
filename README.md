@@ -95,13 +95,13 @@ If you pass `heatpack` a module which _doesn't_ contain a reference to `React.re
 
 * [React Router](https://github.com/rackt/react-router) - nested routing.
 
-* [Redux](https://github.com/gaearon/redux) - functional state managemant.
+* [Redux](https://github.com/gaearon/redux) - functional state management.
 
   Watch the [Live React: Hot Reloading with Time Travel](https://www.youtube.com/watch?v=xsSnOQynTHs) talk from React Europe 2015 for a taste of what it's like to use Redux with hot reloading.
 
 ## Beyond heatpack
 
-Heatpack is intended for quick development and experimentation without the inertia of having to create config files and configure development dependencies up-front. The webpack configuration it uses is only suitable for generic hot reloading, which is why there's no option to use it to ouput built files.
+Heatpack is intended for quick development and experimentation without the inertia of having to create config files and configure development dependencies up-front. The webpack configuration it uses is only suitable for generic hot reloading, which is why there's no option to use it to output built files.
 
 At some stage you'll need to set up your own webpack config. These resources should be useful when you reach that point:
 
