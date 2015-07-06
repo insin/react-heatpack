@@ -98,11 +98,13 @@ React.render(<App/>, document.querySelector('#app'))
 
 If you pass `heatpack` a module which _doesn't_ contain a reference to `React.render`, _it will assume the module exports a React component_ and try to take care of rendering it for you. To disable this check and force the specified module to be executed directly, pass an `-f` or `--force` flag.
 
-## Recommended modules
+## Recommended hot reloadable modules
 
-* [react-router](https://github.com/rackt/react-router) - hot reloadable nested routing
+* [React Router](https://github.com/rackt/react-router) - nested routing.
 
-* [redux](https://github.com/gaearon/redux) - hot reloadable Flux (which will secretly make you understand at least one piece of [Elm](http://elm-lang.org/)!)
+* [Redux](https://github.com/gaearon/redux) - functional state managemant.
+
+  Watch the [Live React: Hot Reloading with Time Travel](https://www.youtube.com/watch?v=xsSnOQynTHs) talk from React Europe 2015 for a taste of what it's like to use Redux with hot reloading.
 
 ## Beyond heatpack
 
