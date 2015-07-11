@@ -1,4 +1,4 @@
-**Changed:** `require('React')` now resolves to the `node_modules` in scope for the working directory, if there is one. It previously always resolved to the version from heatpack's own dependencies.
+**Changed:** `require('react')` now resolves to the `node_modules` dir in scope for the working directory, if there is one. It previously always resolved to the version from heatpack's own dependencies.
 
 **Added:** `-p`/`--port` option to specify the port to run the webpack dev server on. Defaults to 3000.
 
