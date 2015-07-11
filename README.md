@@ -10,7 +10,7 @@ Install the `heatpack` command globally:
 npm install -g react-heatpack
 ```
 
-Call `heatpack` with the path to a module which either runs `React.render(...)` or exports a React component:
+Call `heatpack` with the path to a module which either runs `React.render(...)` or exports a single React component:
 
 ```
 $ heatpack src/index.js
@@ -91,6 +91,54 @@ React.render(<App/>, document.querySelector('#app'))
 
 If you pass `heatpack` a module which _doesn't_ contain a reference to `React.render`, _it will assume the module exports a React component_ and try to take care of rendering it for you. To disable this check and force the specified module to be executed directly, pass an `-f` or `--force` flag.
 
+## Tips & tricks
+
+### React: `npm install` me maybe
+
+You don't even need to `npm install` your own version of React to get started with `heatpack` - webpack has been configured to prefer a local `node_modules/` with React installed when available, but will otherwise fall back to using `heatpack`'s own React dependency.
+
+As such, it can serve up and hot reload this example without a local `node_modules` in sight:
+
+```js
+var React = require('react')
+module.exports = React.createClass({
+  render() {
+    return <div>Hi!</div>
+  }
+})
+```
+
+### Single-file hot reloading with multiple components
+
+If you define and render a bunch of React components in the same module, they can still be hot reloaded as long as you export them.
+
+This can be handy for quickly hacking together something which needs multiple components without having to create separate modules for them:
+
+```js
+var React = require('react')
+
+var App = React.createClass({
+  render() {
+    return <div><Menu/><Content/></div>
+  }
+})
+var Menu = React.createClass({
+  render() {
+    return <nav><ul><li>Item</li></ul></nav>
+  }
+})
+var Content = React.createClass({
+  render() {
+    return <section><h1>Content</h1></section>
+  }
+})
+
+// Exporting is key to hot reloading
+module.exports = {App, Menu, Content}
+
+React.render(<App/>, document.querySelector('#app'))
+```
+
 ## Recommended hot reloadable modules
 
 * [React Router](https://github.com/rackt/react-router) - nested routing.
@@ -112,10 +160,3 @@ At some stage you'll need to set up your own webpack config. These resources sho
 * [SurviveJS - Webpack and React](http://survivejs.com/) - while this entire book is a useful reference for working with React and webpack, the [Deploying Applications](http://survivejs.com/webpack_react/deploying_applications/) chapter is of particular interest for putting together a production build.
 
 ## MIT Licensed
-
-Bottom of the README easter egg: you don't even need to `npm install react` to get started with `heatpack` (but don't tell anyone because I don't know if that's actually a good thing yet!). It can serve up this sample module without a `node_modules` in sight:
-
-```js
-var React = require('react')
-module.exports = React.createClass({render() {return <div>Hi!</div>}})
-```
