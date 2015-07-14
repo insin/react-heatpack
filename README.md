@@ -2,6 +2,8 @@
 
 A `heatpack` command for quick [React](https://facebook.github.io/react/) development with [webpack](https://webpack.github.io/) hot reloading.
 
+**Note:** if you're _primarily_ looking for a live reloading environment to tweak and iterate on encapsulated React components in, go look at [Cosmos](https://github.com/skidding/cosmos) first!
+
 ## Usage
 
 Install the `heatpack` command globally:
