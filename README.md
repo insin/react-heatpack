@@ -12,7 +12,11 @@ Install the `heatpack` command globally:
 npm install -g react-heatpack
 ```
 
-Call `heatpack` with the path to a module which either runs `React.render(...)` or exports a single React component:
+Call `heatpack` with the path to a module which either:
+
+* runs `React.render(...)`,
+* exports a single React component,
+* or exports a React element (e.g. `module.exports = <div></div>`)
 
 ```
 $ heatpack src/index.js
