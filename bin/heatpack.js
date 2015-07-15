@@ -37,7 +37,7 @@ if (args.help || args._.length === 0) {
 
 var options = {
   alias: {},
-  entry: path.join(process.cwd(), args._[0]),
+  entry: path.resolve(args._[0]),
   port: args.port
 }
 
