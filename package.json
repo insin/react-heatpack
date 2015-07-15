@@ -1,6 +1,6 @@
 {
   "name": "react-heatpack",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "A 'heatpack' command for quick React development with webpack hot reloading",
   "repository": {
     "type": "git",

@@ -1,3 +1,5 @@
+## v1.4.0 - 2015-07-15 21:24
+
 **Fixed:** No longer throws an error if you pass the absolute path to a module.
 
 **Added:** Support for modules which export a React element [[andreypopp][andreypopp]]
