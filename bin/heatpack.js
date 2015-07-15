@@ -44,8 +44,6 @@ var options = {
 if (!args.force) {
   var code = fs.readFileSync(options.entry).toString()
   if (code.indexOf('React.render') === -1) {
-    console.log("Couldn't find React.render in " + options.entry +
-                ' - assuming it exports a React component.')
     options.alias['theydoitonpurposelynn'] = options.entry
     options.entry = path.join(__dirname, '../dummy.js')
   }
