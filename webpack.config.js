@@ -36,7 +36,7 @@ function excludeJS(absPath) {
 
 module.exports = function config(options) {
   return {
-    devtool: 'eval',
+    devtool: 'cheap-module-eval-source-map',
     entry: [
       'webpack-dev-server/client?http://localhost:' + options.port,
       'webpack/hot/only-dev-server',
