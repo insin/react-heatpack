@@ -1,3 +1,11 @@
+**Fixed:** No longer throws an error if you pass the absolute path to a module.
+
+**Added:** Support for modules which export a React element [[andreypopp][andreypopp]]
+
+**Changed:** Remove confusing warning message when the module being run doesn't contain `'React.render'` [[andreypopp][andreypopp]]
+
+**Changed:** Use the `cheap-module-eval-source-map` devtool in webpack config instead of `eval` [[andreypopp][andreypopp]]
+
 ## v1.3.0 - 2015-07-11 17:08
 
 **Changed:** `require('react')` now resolves to the `node_modules` dir in scope for the working directory, if there is one. It previously always resolved to the version from heatpack's own dependencies.
@@ -14,7 +22,7 @@
 
 ## v1.1.0 - 2015-07-03 11:50
 
-**Added:** CoffeeScript & CJSX support [[KyleAMathews](https://github.com/KyleAMathews)]
+**Added:** CoffeeScript & CJSX support [[KyleAMathews][KyleAMathews]]
 
 ## v1.0.1 - 2015-07-02 12:37
 
@@ -23,3 +31,6 @@
 ## v1.0.0 - 2015-07-02 06:06
 
 Initial release.
+
+[andreypopp]: https://github.com/andreypopp
+[KyleAMathews]: https://github.com/KyleAMathews
