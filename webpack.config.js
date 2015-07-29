@@ -70,7 +70,7 @@ module.exports = function config(options) {
     },
     module: {
       loaders: [
-        {test: /\.jsx?$/, loader: 'react-hot!babel?stage=0', exclude: excludeJS},
+        {test: /\.jsx?$/, loader: 'react-hot!babel?stage=0&optional[]=runtime', exclude: excludeJS},
         {test: /\.cjsx$/, loader: 'react-hot!coffee!cjsx', exclude: NODE_MODULES_RE},
         {test: /\.coffee$/, loader: 'coffee', exclude: NODE_MODULES_RE},
         {test: /\.json$/, loader: 'json'},
