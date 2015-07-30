@@ -2,6 +2,6 @@ React = require('react')
 
 Coffee = React.createClass
   render: ->
-    <div>Hello from CJSX</div>
+    <h2>Hello from CJSX</h2>
 
 module.exports = Coffee

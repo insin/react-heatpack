@@ -1,3 +1,5 @@
+**Added:** Support use of `async`/`await` by adding babel-runtime [[chtefi][chtefi]]
+
 ## v1.4.0 - 2015-07-15 21:24
 
 **Fixed:** No longer throws an error if you pass the absolute path to a module.
@@ -35,4 +37,5 @@
 Initial release.
 
 [andreypopp]: https://github.com/andreypopp
+[chtefi]: https://github.com/chtefi
 [KyleAMathews]: https://github.com/KyleAMathews
