@@ -31,7 +31,7 @@ if (args.help || args._.length === 0) {
   console.log('Options:')
   console.log("  -v, --version print heatpack's version")
   console.log('  -p, --port    port to run the webpack dev server on [default: 3000]')
-  console.log('  -f, --force   force heatpack to run the given script (disable React.render check)')
+  console.log('  -f, --force   force heatpack to run the given script (disables .render() check)')
   process.exit(0)
 }
 
@@ -43,7 +43,9 @@ var options = {
 
 if (!args.force) {
   var code = fs.readFileSync(options.entry).toString()
-  if (code.indexOf('React.render') === -1) {
+  if (!/React(DOM)?\.render/.test(code)) {
+    // We'll alias the given file to a unique module name. If someone creates
+    // this on npm and the user installs it, they're both trolling ¯\_(ツ)_/¯
     options.alias['theydoitonpurposelynn'] = options.entry
     options.entry = path.join(__dirname, '../dummy.js')
   }

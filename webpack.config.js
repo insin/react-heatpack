@@ -23,6 +23,8 @@ function findWorkingDirNodeModules() {
   }
 }
 
+var workingDirNodeModules = findWorkingDirNodeModules()
+
 /**
  * We need to special-case exclusion to allow the heatpack dummy entry module to
  * be processed by loaders, as it will be under global node_modules.
@@ -58,15 +60,19 @@ module.exports = function config(options) {
       // If there's a node_modules in scope from where the user ran heatpack, we
       // want to pick up React from it first, so prepend it to the list of
       // directories to resolve modules from.
-      root: findWorkingDirNodeModules(),
+      root: workingDirNodeModules,
       extensions: ['', '.js', '.jsx', '.cjsx', '.coffee'],
       // Resolve webpack dev server entry modules from heatpack's dependencies
       fallback: HEATPACK_MODULES,
+      // A unique alias will be set up for the module passed by the user if
+      // we're using dummy.js for rendering.
       alias: options.alias
     },
     resolveLoader: {
-      // Always resolve loaders from heatpack's own dependencies
-      root: HEATPACK_MODULES
+      // We always want to pick up whichever version of React the user has...
+      root: workingDirNodeModules,
+      // ...but fall back to heatpack's dependencies for everything else
+      fallback: HEATPACK_MODULES
     },
     module: {
       loaders: [

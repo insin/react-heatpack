@@ -1,11 +1,17 @@
 var React = require('react')
+try {
+  var ReactDOM = require('react-dom')
+}
+catch (e) {
+  // pass
+}
 var Component = require('theydoitonpurposelynn')
 
 function render(Component) {
   if (!(Component.type && Component.props)) {
     Component = <Component/>
   }
-  React.render(Component, document.querySelector('#app'))
+  (ReactDOM || React).render(Component, document.querySelector('#app'))
 }
 
 render(Component)
