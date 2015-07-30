@@ -8,7 +8,7 @@ module.exports = function server(config, options) {
     hot: true,
     historyApiFallback: true,
     stats: {colors: true}
-  }).listen(options.port, 'localhost', function(err, result) {
+  }).listen(options.port, 'localhost', function(err) {
     if (err) {
       throw err
     }

@@ -2,7 +2,7 @@
 
 var fs = require('fs')
 var path = require('path')
-var parseArgs  = require('minimist')
+var parseArgs = require('minimist')
 
 var pkg = require('../package.json')
 var config = require('../webpack.config')

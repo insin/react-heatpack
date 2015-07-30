@@ -1,6 +1,6 @@
 {
   "name": "react-heatpack",
-  "version": "1.4.0",
+  "version": "1.5.0-beta",
   "description": "A 'heatpack' command for quick React development with webpack hot reloading",
   "repository": {
     "type": "git",
@@ -9,9 +9,12 @@
   "bin": {
     "heatpack": "./bin/heatpack.js"
   },
+  "scripts": {
+    "lint": "eslint ."
+  },
   "dependencies": {
     "autoprefixer-loader": "^2.0.0",
-    "babel-core": "^5.7.2",
+    "babel-core": "^5.8.19",
     "babel-loader": "^5.3.2",
     "cjsx-loader": "^2.0.1",
     "coffee-loader": "^0.7.2",
@@ -27,6 +30,14 @@
     "url-loader": "^0.5.6",
     "webpack": "^1.10.0",
     "webpack-dev-server": "^1.10.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^4.0.5",
+    "eslint": "^1.0.0-rc-3",
+    "eslint-config-standard": "^4.0.0-5",
+    "eslint-config-standard-react": "^1.0.2",
+    "eslint-plugin-react": "^3.1.0",
+    "eslint-plugin-standard": "^1.1.0"
   },
   "license": "MIT"
 }
