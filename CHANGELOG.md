@@ -1,4 +1,6 @@
-**Added:** Support use of `async`/`await` by adding babel-runtime [[chtefi][chtefi]]
+## v1.4.1 - 2015-07-31 10:40
+
+**Fixed:** Fix error when `async` and `await` are used by adding babel-runtime [[chtefi][chtefi]]
 
 ## v1.4.0 - 2015-07-15 21:24
 
