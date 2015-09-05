@@ -74,7 +74,7 @@ module.exports = function config(options) {
         {test: /\.cjsx$/, loader: 'react-hot!coffee!cjsx', exclude: NODE_MODULES_RE},
         {test: /\.coffee$/, loader: 'coffee', exclude: NODE_MODULES_RE},
         {test: /\.json$/, loader: 'json'},
-        {test: /\.css$/, loader: 'style!css?-restructuring!autoprefixer'},
+        {test: /\.css$/, loader: 'style!css?-minimize!autoprefixer'},
         {test: /\.(gif|jpe?g|png|otf|eot|svg|ttf|woff|woff2).*$/, loader: 'url?limit=8192'}
       ]
     }
