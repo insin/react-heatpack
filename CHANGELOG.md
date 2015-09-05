@@ -1,3 +1,7 @@
+## v1.5.0 - 2015-09-05 21:38
+
+**Changed:** CSS is no longer minified.
+
 ## v1.4.1 - 2015-07-31 10:40
 
 **Fixed:** Fix error when `async` and `await` are used by adding babel-runtime [[chtefi][chtefi]]
