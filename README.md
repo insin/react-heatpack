@@ -14,7 +14,7 @@ npm install -g react-heatpack
 
 Call `heatpack` with the path to a module which either:
 
-* runs `React.render(...)`,
+* runs `ReactDOM.render(...)`,
 * exports a single React component,
 * or exports a React element (e.g. `module.exports = <div></div>`)
 
@@ -87,12 +87,13 @@ Since [you should never render to `document.body`](https://medium.com/@dan_abram
 
 [React Hot Loader](https://github.com/gaearon/react-hot-loader) is used to allow you to tweak your React components on the fly without losing their current state.
 
-However, [React components need to be exported from a module](https://github.com/gaearon/react-hot-loader/blob/master/docs/Troubleshooting.md#the-following-modules-couldnt-be-hot-updated-they-would-need-a-full-reload) to be eligible for hot reloading, so `React.render(...)` should be executed in a different module which imports the components to be rendered, e.g.:
+However, [React components need to be exported from a module](https://github.com/gaearon/react-hot-loader/blob/master/docs/Troubleshooting.md#the-following-modules-couldnt-be-hot-updated-they-would-need-a-full-reload) to be eligible for hot reloading, so `ReactDOM.render(...)` should be executed in a different module which imports the components to be rendered, e.g.:
 
 ```javascript
 var React = require('react')
+var ReactDOM = require('react-dom')
 var App = require('./App')
-React.render(<App/>, document.querySelector('#app'))
+ReactDOM.render(<App/>, document.querySelector('#app'))
 ```
 
 If you pass `heatpack` a module which _doesn't_ contain a reference to `React.render`, _it will assume the module exports a React component_ and try to take care of rendering it for you. To disable this check and force the specified module to be executed directly, pass an `-f` or `--force` flag.
@@ -122,6 +123,7 @@ This can be handy for quickly hacking together something which needs multiple co
 
 ```js
 var React = require('react')
+var ReactDOM = require('react-dom')
 
 var App = React.createClass({
   render() {
@@ -142,7 +144,7 @@ var Content = React.createClass({
 // Exporting is key to hot reloading
 module.exports = {App, Menu, Content}
 
-React.render(<App/>, document.querySelector('#app'))
+ReactDOM.render(<App/>, document.querySelector('#app'))
 ```
 
 ## Recommended hot reloadable modules

@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-var fs = require('fs')
 var path = require('path')
 var parseArgs = require('minimist')
 
@@ -31,7 +30,7 @@ if (args.help || args._.length === 0) {
   console.log('Options:')
   console.log("  -v, --version print heatpack's version")
   console.log('  -p, --port    port to run the webpack dev server on [default: 3000]')
-  console.log('  -f, --force   force heatpack to run the given script (disable React.render check)')
+  console.log('  -f, --force   force heatpack to use the given script as the entry point')
   process.exit(0)
 }
 
@@ -42,11 +41,8 @@ var options = {
 }
 
 if (!args.force) {
-  var code = fs.readFileSync(options.entry).toString()
-  if (code.indexOf('React.render') === -1) {
-    options.alias['theydoitonpurposelynn'] = options.entry
-    options.entry = path.join(__dirname, '../dummy.js')
-  }
+  options.alias['theydoitonpurposelynn'] = options.entry
+  options.entry = path.join(__dirname, '../dummy.js')
 }
 
 server(config(options), options)

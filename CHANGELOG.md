@@ -1,3 +1,9 @@
+**Breaking change:** Now uses React 0.14 and ReactDOM.
+
+**Breaking change:** Updated Webpack and loader dependencies. CSS loader 0.19.0 dropped out of the box support for Node.js 0.10 - `Promise` must be manually polyfilled if you're using Node.js 0.10.
+
+**Changed:** `React.render` check removed, by default heatpack now uses a dummy module as the entry point, which imports the given module. The `-f`/`--force` option can still be used to force use of the given module as the entry point.
+
 ## v1.5.0 - 2015-09-05 21:38
 
 **Changed:** CSS is no longer minified.
