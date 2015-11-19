@@ -38,7 +38,13 @@ react-heatpack listening at localhost:3000
 webpack built d32ba06f966491387326 in 2075ms
 ```
 
-Open http://localhost:3000/ and your app will be served and will be hot reloaded with any changes you make. Syntax errors or errors in `render()` methods will be displayed on the screen.
+Open http://localhost:3000/ and your app will be served and will be hot reloaded with any changes you make.
+
+"Hello worlds!"? Let's fix that typo:
+
+![hot reloading example](heatpack.gif)
+
+Syntax errors or errors in `render()` methods will be displayed on the screen.
 
 ### Use cases
 
