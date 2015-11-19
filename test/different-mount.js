@@ -17,4 +17,9 @@ var Content = React.createClass({
   }
 })
 
-ReactDOM.render(<App/>, document.querySelector('#app'))
+var mount = document.querySelector('#mount')
+if (!mount) {
+  mount = document.createElement('div')
+  document.body.appendChild(mount)
+}
+ReactDOM.render(<App/>, mount)
