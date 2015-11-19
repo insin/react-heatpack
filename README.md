@@ -1,5 +1,6 @@
 # react-heatpack
 
+![heatpack](heatpack.png)
 [![npm package][npm-badge]][npm]
 
 A `heatpack` command for quick [React](https://facebook.github.io/react/) development with [webpack](https://webpack.github.io/) hot reloading.
