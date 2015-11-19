@@ -2,7 +2,7 @@
 
 **Breaking change:** CoffeeScript is no longer supported, as hot reloading now depends on Babel plugins.
 
-**Changed:** Now using the same hot reloading implementation as [https://github.com/gaearon/react-transform-boilerplate](react-transform-boilerplate) - benefits include syntax errors and rendering errors now being displayed as an overlay they happen ([#9](https://github.com/insin/react-heatpack/issues/9))
+**Changed:** Now using the same hot reloading implementation as [react-transform-boilerplate](https://github.com/gaearon/react-transform-boilerplate) - benefits include syntax errors and rendering errors now being displayed as an overlay they happen ([#9](https://github.com/insin/react-heatpack/issues/9))
 
 **Added:** `-i`/`--info` option to enable display of webpack stats when there are no errors.
 
