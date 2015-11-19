@@ -1,5 +1,7 @@
 # react-heatpack
 
+[![npm package][npm-badge]][npm]
+
 A `heatpack` command for quick [React](https://facebook.github.io/react/) development with [webpack](https://webpack.github.io/) hot reloading.
 
 **Note:** if you're _primarily_ looking for a live reloading environment to tweak and iterate on encapsulated React components in, go look at [Cosmos](https://github.com/skidding/cosmos) first!
@@ -118,3 +120,6 @@ Alternatively if you want set up your own webpack config for a production build,
 * [SurviveJS - Webpack and React](http://survivejs.com/) - while this entire book is a useful reference for working with React and webpack, the [Deploying Applications](http://survivejs.com/webpack_react/deploying_applications/) chapter is of particular interest for putting together a production build.
 
 ## MIT Licensed
+
+[npm-badge]: https://img.shields.io/npm/v/react-heatpack.svg
+[npm]: https://www.npmjs.org/package/react-heatpack
