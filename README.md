@@ -21,15 +21,12 @@ Call `heatpack` with the path to a module which either:
 ```
 $ heatpack src/index.js
 react-heatpack listening at localhost:3000
-```
-
-If all goes well, you should see a listing of loaded modules, ending with:
-
-```
-webpack: bundle is now VALID
+webpack built d6953adb7d78e400f9d3 in 3731ms
 ```
 
 Open http://localhost:3000/ and your app should be served and will be hot reloaded when you make any changes.
+
+Any syntax errors or errors in `render()` methods will be overlaid on the screen.
 
 ## Configured loaders
 
@@ -37,19 +34,13 @@ Webpack loaders are configured for the following:
 
 ### JavaScript
 
-JavaScript modules can have `.js` or `.jsx` extensions and will be transformed with [Babel](http://babeljs.io), so you can use:
+JavaScript modules can have `.js` or `.jsx` extensions and will be transformed with [Babel](http://babeljs.io) (version 5), so you can use:
 
 * [JSX](http://facebook.github.io/react/docs/jsx-in-depth.html)
-* [ECMAScript 6 features](http://babeljs.io/docs/learn-es2015/#ecmascript-6-features)
-* [ECMAScript 7 proposals](http://babeljs.io/docs/usage/experimental/) experimentally supported by Babel.
+* [ECMAScript 6 features](https://web.archive.org/web/20150910124138/http://babeljs.io/docs/learn-es2015/#ecmascript-6-features)
+* [ECMAScript 7 proposals](https://web.archive.org/web/20150910174653/https://babeljs.io/docs/usage/experimental/) experimentally supported by Babel 5.
 
 You can also require `.json` files as normal.
-
-### CoffeeScript
-
-If you use CoffeeScript, it's also supported - modules can have `.coffee` or `.cjsx` extensions.
-
-`.cjsx` modules will be transformed with [coffee-react-transform](https://github.com/jsdf/coffee-react-transform), allowing you to use JSX in your CoffeeScript.
 
 ### CSS
 
@@ -65,7 +56,7 @@ Vendor prefixes will be automatically applied to your CSS, as necessary.
 
 Images and font files referenced from your CSS will also be handled for you.
 
-See the [css-loader documentation](https://github.com/webpack/css-loader/) for more information on what webpack allows you to do when you start using `require()` for CSS.
+See the [css-loader documentation](https://github.com/webpack/css-loader) for more information on what webpack allows you to do when you start using `require()` for CSS.
 
 ### Images
 
@@ -83,41 +74,11 @@ Small images will be inlined as `data:` URIs and larger images will be served up
 
 Since [you should never render to `document.body`](https://medium.com/@dan_abramov/two-weird-tricks-that-fix-react-7cf9bbdef375#486f), the page served up by heatpack includes a `<div id="app"></div>` element for your app to render into.
 
-### Hot reloading React components
-
-[React Hot Loader](https://github.com/gaearon/react-hot-loader) is used to allow you to tweak your React components on the fly without losing their current state.
-
-However, [React components need to be exported from a module](https://github.com/gaearon/react-hot-loader/blob/master/docs/Troubleshooting.md#the-following-modules-couldnt-be-hot-updated-they-would-need-a-full-reload) to be eligible for hot reloading, so `ReactDOM.render(...)` should be executed in a different module which imports the components to be rendered, e.g.:
-
-```javascript
-var React = require('react')
-var ReactDOM = require('react-dom')
-var App = require('./App')
-ReactDOM.render(<App/>, document.querySelector('#app'))
-```
-
-If you pass `heatpack` a module which _doesn't_ contain a reference to `React.render`, _it will assume the module exports a React component_ and try to take care of rendering it for you. To disable this check and force the specified module to be executed directly, pass an `-f` or `--force` flag.
-
 ## Tips & tricks
-
-### React: `npm install` me maybe
-
-You don't even need to `npm install` your own version of React to get started with `heatpack` - webpack has been configured to prefer a local `node_modules/` with React installed when available, but will otherwise fall back to using `heatpack`'s own React dependency.
-
-As such, it can serve up and hot reload this example without a local `node_modules` in sight:
-
-```js
-var React = require('react')
-module.exports = React.createClass({
-  render() {
-    return <div>Hi!</div>
-  }
-})
-```
 
 ### Single-file hot reloading with multiple components
 
-If you define and render a bunch of React components in the same module, they can still be hot reloaded as long as you export them.
+If you define and render a bunch of React components in the same module, they can still be hot reloaded.
 
 This can be handy for quickly hacking together something which needs multiple components without having to create separate modules for them:
 
@@ -141,25 +102,14 @@ var Content = React.createClass({
   }
 })
 
-// Exporting is key to hot reloading
-module.exports = {App, Menu, Content}
-
 ReactDOM.render(<App/>, document.querySelector('#app'))
 ```
 
-## Recommended hot reloadable modules
-
-* [React Router](https://github.com/rackt/react-router) - nested routing.
-
-* [Redux](https://github.com/gaearon/redux) - functional state management.
-
-  Watch the [Live React: Hot Reloading with Time Travel](https://www.youtube.com/watch?v=xsSnOQynTHs) talk from React Europe 2015 for a taste of what it's like to use Redux with hot reloading.
-
 ## Beyond heatpack
 
-Heatpack is intended for quick development and experimentation without the inertia of having to create config files and configure development dependencies up-front. The webpack configuration it uses is only suitable for generic hot reloading, which is why there's no option to use it to output built files.
+Check out [rwb: the React workbench](https://github.com/petehunt/rwb), which serves and creates production builds for React apps without having to set up your own build tools.
 
-At some stage you'll need to set up your own webpack config. These resources should be useful when you reach that point:
+Alternatively if you want set up your own webpack config for a production build, these resources should be useful:
 
 * [petehunt/webpack-howto](https://github.com/petehunt/webpack-howto) is a great place to start for the most common "How do I configure X?" questions about webpack.
 

@@ -1,19 +1,18 @@
-'use strict'
-
 var fs = require('fs')
 var path = require('path')
+
+var combineLoaders = require('webpack-combine-loaders')
+var resolve = require('resolve')
 var webpack = require('webpack')
 
-var HEATPACK_MODULES = path.join(__dirname, 'node_modules')
 var NODE_MODULES_RE = /node_modules/
-var DUMMY_ENTRY_RE = /react-heatpack[\\/]dummy.js$/
+var ENTRY_RE = /react-heatpack[\\/]entry.js$/
 
 /**
- * Tries to find a node_modules directory which will be resolved for requires
- * from the working directory.
+ * Find the node_modules directory which will be resolved from a given dir.
  */
-function findWorkingDirNodeModules() {
-  var parts = process.cwd().split(path.sep)
+function findNodeModules(cwd) {
+  var parts = cwd.split(path.sep)
   while (parts.length > 0) {
     var target = path.join(parts.join(path.sep), 'node_modules')
     if (fs.existsSync(target)) {
@@ -23,12 +22,23 @@ function findWorkingDirNodeModules() {
   }
 }
 
+var reactPath
+var reactDOMPath
+try {
+  reactPath = resolve.sync('react', {basedir: process.cwd()})
+  reactDOMPath = resolve.sync('react-dom', {basedir: process.cwd()})
+}
+catch (e) {
+  reactPath = require.resolve('react')
+  reactDOMPath = require.resolve('react-dom')
+}
+
 /**
- * We need to special-case exclusion to allow the heatpack dummy entry module to
- * be processed by loaders, as it will be under global node_modules.
+ * We need to special-case exclusion to allow the heatpack entry module to be
+ * processed by loaders, as it will be under global node_modules.
  */
 function excludeJS(absPath) {
-  if (DUMMY_ENTRY_RE.test(absPath)) {
+  if (ENTRY_RE.test(absPath)) {
     return false
   }
   return NODE_MODULES_RE.test(absPath)
@@ -38,8 +48,9 @@ module.exports = function config(options) {
   return {
     devtool: 'cheap-module-eval-source-map',
     entry: [
-      'webpack-dev-server/client?http://localhost:' + options.port,
-      'webpack/hot/only-dev-server',
+      // Polyfill EventSource for IE, as webpack-hot-middleware/client uses it
+      require.resolve('eventsource-polyfill'),
+      require.resolve('webpack-hot-middleware/client'),
       options.entry
     ],
     output: {
@@ -55,27 +66,77 @@ module.exports = function config(options) {
       })
     ],
     resolve: {
-      // If there's a node_modules in scope from where the user ran heatpack, we
-      // want to pick up React from it first, so prepend it to the list of
-      // directories to resolve modules from.
-      root: findWorkingDirNodeModules(),
-      extensions: ['', '.js', '.jsx', '.cjsx', '.coffee'],
-      // Resolve webpack dev server entry modules from heatpack's dependencies
-      fallback: HEATPACK_MODULES,
-      alias: options.alias
-    },
-    resolveLoader: {
-      // Always resolve loaders from heatpack's own dependencies
-      root: HEATPACK_MODULES
+      alias: {
+        'babel-runtime': path.join(findNodeModules(__dirname), 'babel-runtime'),
+        'react-heatpack-react-alias': reactPath,
+        'react-heatpack-react-dom-alias': reactDOMPath,
+        'react-heatpack-script-alias': options.script
+      },
+      extensions: ['', '.js', '.jsx', '.json'],
+      root: process.cwd(),
+      fallback: [findNodeModules(__dirname)]
     },
     module: {
       loaders: [
-        {test: /\.jsx?$/, loader: 'react-hot!babel?stage=0&optional[]=runtime', exclude: excludeJS},
-        {test: /\.cjsx$/, loader: 'react-hot!coffee!cjsx', exclude: NODE_MODULES_RE},
-        {test: /\.coffee$/, loader: 'coffee', exclude: NODE_MODULES_RE},
-        {test: /\.json$/, loader: 'json'},
-        {test: /\.css$/, loader: 'style!css?-minimize!autoprefixer'},
-        {test: /\.(gif|jpe?g|png|otf|eot|svg|ttf|woff|woff2).*$/, loader: 'url?limit=8192'}
+        {
+          test: /\.jsx?$/,
+          loader: require.resolve('babel-loader'),
+          exclude: excludeJS,
+          query: {
+            loose: 'all',
+            stage: 0,
+            optional: ['runtime'],
+            plugins: [
+              require.resolve('babel-plugin-react-display-name'),
+              require.resolve('babel-plugin-react-transform')
+            ],
+            extra: {
+              'react-transform': {
+                transforms: [{
+                  transform: require.resolve('react-transform-hmr'),
+                  imports: [reactPath],
+                  locals: ['module']
+                }, {
+                  transform: require.resolve('react-transform-catch-errors'),
+                  imports: [reactPath, require.resolve('redbox-noreact')]
+                }]
+              }
+            }
+          }
+        },
+        {
+          test: /\.json$/,
+          loader: require.resolve('json-loader')
+        },
+        {
+          test: /\.css$/,
+          loader: combineLoaders([
+            {loader: require.resolve('style-loader')},
+            {loader: require.resolve('css-loader'), query: {minimize: false}}
+          ]) + '!' + require.resolve('autoprefixer-loader')
+        },
+        {
+          test: /\.(gif|png)$/,
+          loader: require.resolve('url-loader'),
+          query: {
+            limit: 10240
+          }
+        },
+        {
+          test: /\.jpe?g$/,
+          loader: require.resolve('file-loader')
+        },
+        {
+          test: /\.(otf|svg|ttf|woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+          loader: require.resolve('url-loader'),
+          query: {
+            limit: 10240
+          }
+        },
+        {
+          test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+          loader: require.resolve('file-loader')
+        }
       ]
     }
   }

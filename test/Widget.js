@@ -2,7 +2,6 @@ require('./Widget.css')
 
 var React = require('react')
 
-var Coffee = require('./Coffee')
 var ES6 = require('./es6-class')
 var Functional = require('./function')
 var Stories = require('./Stories')
@@ -16,7 +15,6 @@ var Widget = React.createClass({
       <img width="500" src={require('./large.png')}/>
       <ES6/>
       <Functional/>
-      <Coffee/>
       <Stories/>
     </div>
   }
