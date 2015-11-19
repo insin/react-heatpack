@@ -21,15 +21,30 @@ Call `heatpack` with the path to a module which either:
 * exports a single React component,
 * or exports a React element (e.g. `module.exports = <div></div>`)
 
+For example:
+
 ```
-$ heatpack src/index.js
+$ cat > index.js
+import React from 'react'
+
+export default React.createClass({
+  render() {
+    return <div>Hello worlds!</div>
+  }
+})
+
+$ heatpack index.js
 react-heatpack listening at localhost:3000
-webpack built d6953adb7d78e400f9d3 in 3731ms
+webpack built d32ba06f966491387326 in 2075ms
 ```
 
-Open http://localhost:3000/ and your app should be served and will be hot reloaded when you make any changes.
+Open http://localhost:3000/ and your app will be served and will be hot reloaded with any changes you make. Syntax errors or errors in `render()` methods will be displayed on the screen.
 
-Any syntax errors or errors in `render()` methods will be overlaid on the screen.
+### Use cases
+
+* Quick development and experimentation without the inertia of having to create config files and configure development dependencies up-front.
+
+* Creating [Gists](https://gist.github.com/) which can be cloned, `npm install`ed and `npm start`ed when you want to share code, instead of having to create and host a static build, e.g. [React Form Play](https://gist.github.com/insin/49040037bbb6cd99faf7)
 
 ## Configured loaders
 
