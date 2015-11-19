@@ -1,3 +1,7 @@
+# v3.0.1 - 2015-11-19
+
+**Fixed:** Don't skip auto-rendering if a function was exported.
+
 # v3.0.0 - 2015-11-19
 
 **Breaking change:** CoffeeScript is no longer supported, as hot reloading now depends on Babel plugins.

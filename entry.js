@@ -8,7 +8,10 @@ function render(Component) {
   // Don't attempt to render if there was already something rendered in #app,
   // or if nothing was exported (assumption: they rendered somewhere else and
   // didn't export anything)
-  if (alreadyRendered || Object.keys(Component).length === 0) return
+  if (alreadyRendered ||
+      !(typeof Component === 'function' || Object.keys(Component).length > 0)) {
+    return
+  }
 
   // Assumption: either a React component or element was exported
   // If a React component was exported, create an element
