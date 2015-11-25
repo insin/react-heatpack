@@ -129,6 +129,18 @@ var Content = React.createClass({
 ReactDOM.render(<App/>, document.querySelector('#app'))
 ```
 
+### Heatpack in a Tweet
+
+```
+cat << ^D > index.js
+import React from 'react'
+export default () => <div>#reactjs</div>
+^D
+npm install -g react-heatpack
+heatpack index.js
+
+```
+
 ## Beyond heatpack
 
 Check out [rwb: the React workbench](https://github.com/petehunt/rwb), which serves and creates production builds for React apps without having to set up your own build tools.
