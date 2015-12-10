@@ -1,6 +1,8 @@
 var React = require('react')
 var ReactDOM = require('react-dom')
 
+require('./single-file.less');
+
 var App = React.createClass({
   render() {
     return <div><Menu/><Content/></div>
