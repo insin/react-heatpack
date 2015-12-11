@@ -117,7 +117,9 @@ module.exports = function config(options) {
         },
         {
           test: /\.less$/,
-          loader: "style!css!less"
+          loader: require.resolve('style-loader')
+            + '!' + require.resolve('css-loader')
+            + '!' + require.resolve('less-loader')
         },
         {
           test: /\.(gif|png)$/,
