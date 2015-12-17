@@ -83,15 +83,15 @@ module.exports = function config(options) {
           loader: require.resolve('babel-loader'),
           exclude: excludeJS,
           query: {
-            loose: 'all',
-            stage: 0,
-            optional: ['runtime'],
-            plugins: [
-              require.resolve('babel-plugin-react-display-name'),
-              require.resolve('babel-plugin-react-transform')
+            presets: [
+              require.resolve('babel-preset-es2015'),
+              require.resolve('babel-preset-react'),
+              require.resolve('babel-preset-stage-0')
             ],
-            extra: {
-              'react-transform': {
+            plugins: [
+              require.resolve('babel-plugin-transform-runtime'),
+              require.resolve('babel-plugin-transform-react-display-name'),
+              [require.resolve('babel-plugin-react-transform'), {
                 transforms: [{
                   transform: require.resolve('react-transform-hmr'),
                   imports: [reactPath],
@@ -100,8 +100,8 @@ module.exports = function config(options) {
                   transform: require.resolve('react-transform-catch-errors'),
                   imports: [reactPath, require.resolve('redbox-noreact')]
                 }]
-              }
-            }
+              }]
+            ]
           }
         },
         {
