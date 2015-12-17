@@ -2,7 +2,7 @@ require('./Widget.css')
 
 var React = require('react')
 
-var ES6 = require('./es6-class')
+import ES6 from './es6-class'
 var Functional = require('./function')
 var Stories = require('./Stories')
 
