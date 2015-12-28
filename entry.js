@@ -1,4 +1,4 @@
-var Component = require('react-heatpack-script-alias')
+import Component from 'react-heatpack-script-alias'
 var React = require('react-heatpack-react-alias')
 var ReactDOM = require('react-heatpack-react-dom-alias')
 

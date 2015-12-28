@@ -91,7 +91,7 @@ module.exports = function config(options) {
             plugins: [
               require.resolve('babel-plugin-transform-runtime'),
               require.resolve('babel-plugin-transform-react-display-name'),
-              ['react-transform', {
+              [require.resolve('babel-plugin-react-transform'), {
                 transforms: [{
                   transform: require.resolve('react-transform-hmr'),
                   imports: [reactPath],
