@@ -117,9 +117,11 @@ module.exports = function config(options) {
         },
         {
           test: /\.less$/,
-          loader: require.resolve('style-loader')
-            + '!' + require.resolve('css-loader')
-            + '!' + require.resolve('less-loader')
+          loader: combineLoaders([
+            {loader: require.resolve('style-loader')},
+            {loader: require.resolve('css-loader'), query: {minimize: false}}
+          ]) + '!' + require.resolve('autoprefixer-loader')
+          + '!' + require.resolve('less-loader')
         },
         {
           test: /\.(gif|png)$/,
