@@ -22,11 +22,11 @@ module.exports = function server(config, options) {
     res.sendFile(path.join(__dirname, 'build/index.html'))
   })
 
-  app.listen(options.port, 'localhost', function(err) {
+  app.listen(options.port, options.hostname, function(err) {
     if (err) {
       console.error(err.stack)
       process.exit(1)
     }
-    console.log('react-heatpack listening at http://localhost:' + options.port)
+    console.log('react-heatpack listening at http://' + options.hostname + ':' + options.port)
   })
 }
