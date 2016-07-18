@@ -5,7 +5,7 @@
 
 A `heatpack` command for quick [React](https://facebook.github.io/react/) development with [webpack](https://webpack.github.io/) hot reloading.
 
-**Note:** if you're _primarily_ looking for a live reloading environment to tweak and iterate on encapsulated React components in, go look at [Cosmos](https://github.com/skidding/cosmos) first!
+**Note:** This forks [brings in a few changes](#changes-on-this-fork).
 
 ## Usage
 
@@ -140,6 +140,16 @@ npm install -g react-heatpack
 heatpack index.js
 
 ```
+
+## Changes on this fork
+
+### Custom static files served
+
+* Allows you to have a `./public` directory.  The contents on this directory will be served statically by express.
+
+### Custom index.html file 
+
+* If there's an `index.html` file in your custom `public` directory, this file will be leveraged as the main  file for the `*` route. 
 
 ## Beyond heatpack
 
