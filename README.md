@@ -2,7 +2,7 @@
 
 If you want to quickly prototype React apps without setting up a project, try [nwb](https://github.com/insin/nwb)'s `react` command instead.
 
-If you want something to tweak and iterate on React components, try [Carte Blanche)(https://github.com/carteb/carte-blanche]), [Cosmos](https://github.com/skidding/cosmos) or [React Storybook](https://github.com/kadirahq/react-storybook)
+If you want something to tweak and iterate on React components, try [Carte Blanche](https://github.com/carteb/carte-blanche), [Cosmos](https://github.com/skidding/cosmos) or [React Storybook](https://github.com/kadirahq/react-storybook)
 
 ---
 
