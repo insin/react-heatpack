@@ -1,11 +1,17 @@
+# DEPRECATED
+
+If you want to quickly prototype React apps without setting up a project, try [nwb](https://github.com/insin/nwb)'s `react` command instead.
+
+If you want something to tweak and iterate on React components, try [Carte Blanche)(https://github.com/carteb/carte-blanche]), [Cosmos](https://github.com/skidding/cosmos) or [React Storybook](https://github.com/kadirahq/react-storybook)
+
+---
+
 # react-heatpack
 
 ![heatpack](heatpack.png)
 [![npm package][npm-badge]][npm]
 
 A `heatpack` command for quick [React](https://facebook.github.io/react/) development with [webpack](https://webpack.github.io/) hot reloading.
-
-**Note:** if you're _primarily_ looking for a live reloading environment to tweak and iterate on encapsulated React components in, go look at [Cosmos](https://github.com/skidding/cosmos) first!
 
 ## Usage
 
